@@ -1,7 +1,6 @@
 import argparse
 import hashlib
 import time
-from threading import Thread
 import subprocess
 
 
@@ -24,10 +23,6 @@ def run_program(f, a):
     return subprocess.Popen((["py", f, a if a else ""]))
 
 
-def get_program_process(f, a):
-    return Thread(target=run_program, args=[f, a])
-
-
 if __name__ == "__main__":
     args = get_args()
     program = run_program(args.f, args.a)
@@ -40,4 +35,3 @@ if __name__ == "__main__":
             program = run_program(args.f, args.a)
             previous_hash = new_hash
         time.sleep(1)
-        
